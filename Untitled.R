@@ -15,8 +15,30 @@ graphics.off()
 
 # Generate some data ------------------------------------------------------
 
-x <- rnorm(n = 100, mean = 0, sd = 1)  #independent variable
-z <- rnorm(n = 100, mean = 0, sd = 1)  #noise
-y <- 2.2 * x + 1.1 + z
+n <- 100 
+m <- 2.2
+b <- 1.1
+
+x <- rnorm(n = n, mean = 0, sd = 1)  #independent variable
+noise <- rnorm(n = 100, mean = 0, sd = 1)  #noise
+y <- m * x + b + noise  # dependent variable
 
 plot(x,y)
+
+
+# Do linear regression ----------------------------------------------------
+
+fit <- glm(y ~ x)
+
+
+
+# Plot the results --------------------------------------------------------
+
+par(mar = c(6,7,4,1))
+
+plot(x,y,
+     xlab = "Normalized velocity", 
+     ylab = "Normalized\nenergy consumption")
+
+abline(fit)
+
